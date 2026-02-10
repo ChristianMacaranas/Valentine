@@ -1,0 +1,52 @@
+/* Additional component-specific styles */
+.valentine-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.button-container {
+  position: relative;
+  min-height: 200px;
+}
+
+.no-button {
+  transition: all 0.3s ease;
+  position: absolute;
+}
+
+.yes-button {
+  transition: all 0.3s ease;
+  background: linear-gradient(45deg, #ff69b4, #ff1493);
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 105, 180, 0.4);
+}
+
+.yes-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
+}
+
+.celebration-text {
+  animation: bounce 1s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
