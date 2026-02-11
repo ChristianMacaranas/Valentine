@@ -1,19 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --bg1: #ffd6e7;
-  --bg2: #ffeef6;
-  --card: #ffffffcc;
-  --yes: #ff3b7a;
-  --yesHover: #ff1f68;
+  --bg1: #ff6b9d;
+  --bg2: #feca57;
+  --bg3: #ff9ff3;
+  --card: rgba(255, 255, 255, 0.95);
+  --card-shadow: rgba(255, 107, 157, 0.15);
+  --yes: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --yesHover: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+  --no: #f8f9fa;
+  --noHover: #e9ecef;
+  --text-primary: #2d3436;
+  --text-secondary: #636e72;
+  --glow: rgba(255, 107, 157, 0.4);
 }
 
 body {
   margin: 0;
   min-height: 100svh;
-  background: radial-gradient(circle at top, var(--bg2), var(--bg1));
-  font-family: system-ui, sans-serif;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(254, 202, 87, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 159, 243, 0.2) 0%, transparent 50%),
+    linear-gradient(135deg, #ff6b9d 0%, #feca57 50%, #ff9ff3 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   overflow: hidden;
+  position: relative;
+}
+
+.glass-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 24px;
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.premium-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.premium-button:hover::before {
+  left: 100%;
+}
+
+.floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart-particle {
+  position: absolute;
+  font-size: 20px;
+  animation: float-up 6s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+    transform: translateY(90vh) rotate(45deg) scale(1);
+  }
+  90% {
+    opacity: 0.7;
+    transform: translateY(10vh) rotate(315deg) scale(1);
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px var(--glow);
+  }
+  50% {
+    box-shadow: 0 0 40px var(--glow), 0 0 60px var(--glow);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #ff6b9d, #feca57, #ff9ff3, #ff6b9d);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05) rotate(180deg);
+  }
+  70% {
+    transform: scale(0.9) rotate(270deg);
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.bounce-in {
+  animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #ff6b9d, #feca57, #ff9ff3, #667eea, #764ba2);
+  background-size: 400% 400%;
+  animation: gradient-shift 15s ease infinite;
 }
